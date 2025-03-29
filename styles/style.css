@@ -1,0 +1,15 @@
+#container{
+    margin-top: 10px;
+    
+}
+
+
+article{
+    margin-bottom: 40px;
+    border: 1px solid ;
+    padding: 10px;
+ }
+
+ article h1{
+    text-align: center;
+ }
