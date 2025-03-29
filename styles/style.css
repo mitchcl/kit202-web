@@ -3,7 +3,6 @@ section p{
     font-size: 16px;
     line-height: 1.5;
     color: #333;
-    background-color: rgb(238, 235, 235);
 }
 
 
@@ -22,3 +21,5 @@ article{
  article h1{
     text-align: center;
  }
+
+ 
