@@ -11,7 +11,11 @@ section p{
     
 }
 
+header h1{
+    text-align: center;
+ }
 
+ 
 article{
     margin-bottom: 40px;
     border: 1px solid ;
@@ -22,4 +26,3 @@ article{
     text-align: center;
  }
 
- 
