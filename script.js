@@ -1,8 +1,8 @@
 
-function myFunction(buttonID) {
-    var dots = buttonID.target.previousElementSibling.querySelector(".dots");
-    var moreText = buttonID.target.previousElementSibling.querySelector(".more");
-    var btn = buttonID.target;
+function myFunction(event) {
+    var dots = event.target.previousElementSibling.querySelector(".dots");
+    var moreText = event.target.previousElementSibling.querySelector(".more");
+    var btn = event.target;
   
     if (dots.style.display === "none") {
       dots.style.display = "inline";
