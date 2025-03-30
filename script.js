@@ -1,5 +1,19 @@
 
-
+function myFunction(buttonID) {
+    var dots = buttonID.target.previousElementSibling.querySelector(".dots");
+    var moreText = buttonID.target.previousElementSibling.querySelector(".more");
+    var btn = buttonID.target;
+  
+    if (dots.style.display === "none") {
+      dots.style.display = "inline";
+      btn.innerHTML = "Read more";
+      moreText.style.display = "none";
+    } else {
+      dots.style.display = "none";
+      btn.innerHTML = "Read less";
+      moreText.style.display = "inline";
+    }
+  }
 
 
 
