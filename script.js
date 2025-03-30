@@ -1,18 +1,36 @@
-function myFunction(event) {
-    var dots = event.target.previousElementSibling.querySelector(".dots");
-    var moreText = event.target.previousElementSibling.querySelector(".more");
-    var btnText = event.target;
+
+
+
+
+
+
+// document.addEventListener('DOMContentLoaded', function() {
+//     function myFunction(event) {
+//       // Find the relevant "dots" and "more" elements within the same section
+//       var section = event.target.closest('section');
+//       var dots = section.querySelector(".dots");
+//       var moreText = section.querySelector(".more");
+//       var btnText = event.target;
   
-    if (dots.style.display === "none") {
-      dots.style.display = "inline";
-      btnText.innerHTML = "Read more";
-      moreText.style.display = "none";
-    } else {
-      dots.style.display = "none";
-      btnText.innerHTML = "Read less";
-      moreText.style.display = "inline";
-    }
-  }
+//       // Toggle the display of the dots and the 'more' text
+//       if (dots.style.display === "none") {
+//         dots.style.display = "inline";
+//         btnText.innerHTML = "Read more"; 
+//         moreText.style.display = "none";
+//       } else {
+//         dots.style.display = "none";
+//         btnText.innerHTML = "Read less"; 
+//         moreText.style.display = "inline";
+//       }
+//     }
+  
+//     // Attach the 'myFunction' to all 'Read more' buttons
+//     var buttons = document.querySelectorAll('.myBtn');
+//     buttons.forEach(function(button) {
+//       button.addEventListener('click', myFunction);
+//     });
+//   });
+  
 
 
 
