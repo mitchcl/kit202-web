@@ -10,26 +10,35 @@ section p{
     margin-top: 10px;
     
 }
-
-header h1{
-    text-align: center;
- }
-
- 
 article{
     margin-bottom: 40px;
     border: 1px solid ;
     padding: 10px;
  }
-
+ 
  article h1{
     text-align: center;
  }
 
- .more {
+header h1{
+    text-align: center;
+ }
+
+ section p {
+    margin-top: 15px;
+    gap: 10px;
+ }
+
+
+.more {
     display: none;
 }
 
 .dots {
     display: inline;
 }
+
+.myBtn{
+    background-color: aqua;
+}
+
