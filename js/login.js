@@ -36,11 +36,11 @@ document.addEventListener('DOMContentLoaded', function() {
         let isValid = true;
         
         if (!usernameInput.value.trim()) {
-            displayError(usernameInput, 'userError', 'Username cannot be empty. Please enter your username.');
+            displayError(usernameInput, 'userError', 'Username cannot be empty! Please enter your username.');
             isValid = false;
         }
         if (!passwordInput.value.trim()) {
-            displayError(passwordInput, 'pwErr', 'Password cannot be empty. Please enter your password.');
+            displayError(passwordInput, 'pwErr', 'Password cannot be empty! Please enter your password.');
             isValid = false;
         }
         if (isValid) {

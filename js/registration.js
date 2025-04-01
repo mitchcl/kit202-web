@@ -51,20 +51,20 @@ document.addEventListener('DOMContentLoaded', function() {
         let isValid = true;
         
         if (!usernameInput.value.trim()) {
-            displayError(usernameInput, 'regUserError', 'Username cannot be empty.');
+            displayError(usernameInput, 'regUserError', 'Username cannot be empty!');
             isValid = false;
         }
         
         if (!emailInput.value.trim()) {
-            displayError(emailInput, 'emailError', 'Email address cannot be empty.');
+            displayError(emailInput, 'emailError', 'Email address cannot be empty!');
             isValid = false;
         } else if (!isValidEmail(emailInput.value)) {
-            displayError(emailInput, 'emailError', 'Please enter a valid email address.');
+            displayError(emailInput, 'emailError', 'Please enter a valid email address!');
             isValid = false;
         }
         
         if (!passwordInput.value.trim()) {
-            displayError(passwordInput, 'regPwErr', 'Password cannot be empty.');
+            displayError(passwordInput, 'regPwErr', 'Password cannot be empty!');
             isValid = false;
         } else if (!isValidPassword(passwordInput.value)) {
             displayError(passwordInput, 'regPwErr', 'Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.');
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
             displayError(confirmPasswordInput, 'confirmPwErr', 'Please confirm your password.');
             isValid = false;
         } else if (confirmPasswordInput.value !== passwordInput.value) {
-            displayError(confirmPasswordInput, 'confirmPwErr', 'Passwords do not match.');
+            displayError(confirmPasswordInput, 'confirmPwErr', 'Passwords do not match!');
             isValid = false;
         }
         

@@ -36,20 +36,20 @@ contentInput.addEventListener('input', function() {
     let isValid = true;
     
     if (!titleInput.value.trim()) {
-        displayError(titleInput, 'titleError', 'Title cannot be empty.');
+        displayError(titleInput, 'titleError', 'Title cannot be empty!');
         isValid = false;
     } else if (titleInput.value.length > 80) {
-        displayError(titleInput, 'titleError', 'Title cannot exceed 80 characters.');
+        displayError(titleInput, 'titleError', 'Title cannot exceed 80 characters!');
         isValid = false;
     }
     
     if (!tagsInput.value.trim()) {
-        displayError(tagsInput, 'tagsError', 'Tags cannot be empty.');
+        displayError(tagsInput, 'tagsError', 'Tags cannot be empty!');
         isValid = false;
     } 
     
     if (!contentInput.value.trim()) {
-        displayError(contentInput, 'contentErr', 'Content cannot be empty.');
+        displayError(contentInput, 'contentErr', 'Content cannot be empty!');
         isValid = false;
     } 
      
