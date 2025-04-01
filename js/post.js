@@ -73,7 +73,7 @@ contentInput.addEventListener('input', function() {
 
     resetBtn.addEventListener('click', function() {
         clearError(titleInput, 'titleError');
-        clearError(agsInput, 'tagsError');
+        clearError(tagsInput, 'tagsError');
         clearError(contentInput, 'contentErr');
     });
 
