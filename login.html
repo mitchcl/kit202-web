@@ -3,22 +3,41 @@
     <head>
         <link rel="stylesheet" href="styles/style.css">
         <meta charset="UTF-8">
-        <meta name="author" content="">
-        <title></title>
+        <meta name="author" content="Minh Hoang Truong, Mitch Clifford, Biki Das">
+        <title>Blog Login</title>
     </head>
     <body>
         
         <div id="container">
             <header>
-                <img src="">
-                <h1>Marathon 2025</h1>
+                <h1>Members only area</h1>
             </header>
-
             <main>
-        
+                <form class="form" action="index.html">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" required>
+                        <span class="error" id="usernameError"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                        <span class="error" id="passwordError"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" class="btn">Login</button>
+                    </div>
+                    
+                    <div class="register-link">
+                        <p>Not a member yet? <a href="registration.html">Register here</a></p>
+                    </div>
+                </form>
             </main>
-
+            <footer>
+                <p>© 2024 Blog - All rights reserved</p>
+            </footer>
         </div>
-        
     </body>
 </html>
