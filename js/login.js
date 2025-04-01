@@ -2,6 +2,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const loginForm = document.getElementById('login');
     const usernameInput = document.getElementById('username');
     const passwordInput = document.getElementById('password');
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    // Tab switching functionality
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            tabBtns.forEach(b => b.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            btn.classList.add('active');
+            document.getElementById(btn.dataset.tab).classList.add('active');
+        });
+    });
 
     usernameInput.addEventListener('input', function() {
         if (usernameInput.value.trim() !== '') {

@@ -251,23 +251,84 @@ footer {
     background-color: #0056b3;
 }
 
-.register {
-    margin-top: 15px;
-    text-align: center;
-}
-
-.register a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-.register a:hover {
-    text-decoration: underline;
-}
-
 .error {
     color: #ff3860;
     font-size: 0.9rem;
     margin-top: 5px;
     display: block;
+}
+
+/* login/registration tabs */
+.form-container {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-bottom: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.tab-btn:first-child {
+    border-top-left-radius: 5px;
+}
+
+.tab-btn:last-child {
+    border-top-right-radius: 5px;
+}
+
+.tab-btn:hover {
+    background-color: #afcff2;
+}
+
+.tab-btn.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+#login, #registration {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.btn-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.reset-btn {
+    background-color: #6c757d;
+}
+
+.reset-btn:hover {
+    background-color: #5a6268;
+}
+
+.password-info {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 5px;
 }

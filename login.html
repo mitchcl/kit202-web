@@ -6,6 +6,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Reddit+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
         <script src="js/login.js"></script>
+        <script src="js/registration.js"></script>
         <meta charset="UTF-8">
         <meta name="author" content="Minh Hoang Truong, Mitch Clifford, Biki Das">
         <title>Blog Login</title>
@@ -25,27 +26,63 @@
                         </ul>
                     </nav>
                 </div>
-                <h1>Members only area</h1>
+                <h1>Members area</h1>
             </header>
             <main>
-                <form action="index.html" id="login" novalidate>
-                    <div class="login-input">
-                        <label for="username">Username</label>
-                        <input type="text" id="username" name="username" required>
-                        <span class="error" id="userError"></span>
+                <div class="form-container">
+                    <div class="tabs">
+                        <button class="tab-btn active" data-tab="login-tab">Login</button>
+                        <button class="tab-btn" data-tab="register-tab">Register</button>
                     </div>
-                    <div class="login-input">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" required>
-                        <span class="error" id="pwErr"></span>
+                    
+                    <div id="login-tab" class="tab-content active">
+                        <form action="index.html" id="login" novalidate>
+                            <div class="login-input">
+                                <label for="username">Username</label>
+                                <input type="text" id="username" name="username" required>
+                                <span class="error" id="userError"></span>
+                            </div>
+                            <div class="login-input">
+                                <label for="password">Password</label>
+                                <input type="password" id="password" name="password" required>
+                                <span class="error" id="pwErr"></span>
+                            </div>
+                            <div class="login-input">
+                                <button type="submit" class="btn">Login</button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="login-input">
-                        <button type="submit" class="btn">Login</button>
+                    
+                    <div id="register-tab" class="tab-content">
+                        <form action="index.html" id="registration" novalidate>
+                            <div class="login-input">
+                                <label for="reg-username">Username</label>
+                                <input type="text" id="reg-username" name="reg-username" required>
+                                <span class="error" id="regUserError"></span>
+                            </div>
+                            <div class="login-input">
+                                <label for="reg-email">Email Address</label>
+                                <input type="email" id="reg-email" name="reg-email" required>
+                                <span class="error" id="emailError"></span>
+                            </div>
+                            <div class="login-input">
+                                <label for="reg-password">Password</label>
+                                <input type="password" id="reg-password" name="reg-password" required>
+                                <span class="error" id="regPwErr"></span>
+                                <p class="password-info">Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character.</p>
+                            </div>
+                            <div class="login-input">
+                                <label for="confirm-password">Confirm Password</label>
+                                <input type="password" id="confirm-password" name="confirm-password" required>
+                                <span class="error" id="confirmPwErr"></span>
+                            </div>
+                            <div class="btn-group">
+                                <button type="submit" class="btn">Register</button>
+                                <button type="reset" class="btn reset-btn">Reset</button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="register">
-                        <p>Not a member yet? <a href="registration.html">Register here</a></p>
-                    </div>
-                </form>
+                </div>
             </main>
             <footer>
                 <p>© 2024 Blog - All rights reserved</p>
