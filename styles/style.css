@@ -10,6 +10,7 @@ body{
     font-style: normal;
 }
 
+
 #container{
     margin: 10px auto;
     max-width: 900px;
@@ -398,7 +399,7 @@ main {
     display: block;
 }
 
-#login, #registration {
+#login, #registration, #posts {
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -423,4 +424,14 @@ main {
     font-size: 0.8rem;
     color: #666;
     margin-top: 5px;
+}
+
+textarea {
+    width: 98.5%;
+    height: 150px;
+    padding: auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+    font-family: Arial, sans-serif;
 }
