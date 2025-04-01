@@ -129,6 +129,10 @@ table {
     font-size: 1rem;
 }
 
+.author {
+    font-weight: 600;
+}
+
 .more-posts {
     text-align: center;
     margin: 30px 0;
