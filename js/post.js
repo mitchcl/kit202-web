@@ -54,7 +54,7 @@ contentInput.addEventListener('input', function() {
     } 
      
     if (isValid) {
-        registrationForm.submit();
+        postForm.submit();
     }
 });
 
