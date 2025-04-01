@@ -19,7 +19,8 @@ body{
 }
 article{
     margin-bottom: 40px;
-    border: 1px solid;
+    border-radius: 4px;
+    border: 1px solid #c8c8c8;
     padding: 10px;
  }
 
@@ -128,32 +129,54 @@ table {
     font-size: 1rem;
 }
 
+.more-posts {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.older-posts-link {
+    display: inline-block;
+    color: #007bff;
+    padding: 5px 10px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.older-posts-link:hover {
+    color: #0056b3;
+}
+
 /* header/navbar */
 .header-container {
-    position: sticky;
+    position: fixed;
+    left: 0;
+    right: 0;
     top: 0;
     z-index: 100;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center; /* Center the content */
+    width: 100%;
     border-bottom: 1px solid #ddd;
-    margin-bottom: 20px;
-    background-color: #fff;
-    padding: 10px 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 10px 20px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-sizing: border-box;
 }
 
 .logo {
     display: block;
-    max-width: 100%;
-    height: auto;
+    max-height: 40px;
+    width: auto;
+    margin-right: 20px; /* Add space between logo and navbar */
 }
 
 .navbar {
     display: flex;
     justify-content: center;
-    margin-top: 10px;
-    width: 100%;
+    margin-top: 0;
+    width: auto;
 }
 
 .navbar ul {
@@ -207,20 +230,39 @@ table {
     border-bottom: 2px solid transparent;
 }
 
+main {
+    padding-top: 70px;
+}
+
 /* the cool stuff, responsive/mobile */
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 767px) {
     .header-container {
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 10px 20px;
+        flex-direction: column;
+        justify-content: center;
+        padding: 10px;
     }
     
-    .logo-container {
-        margin-bottom: 0;
+    .logo {
+        margin-right: 20px;
+        margin-bottom: 10px;
     }
     
     .navbar {
-        margin-left: auto;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .navbar ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .navbar li {
+        margin: 5px;
+    }
+    
+    main {
+        padding-top: 110px;
     }
 }
 
