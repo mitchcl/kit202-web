@@ -1,4 +1,4 @@
-/* main page */
+/* home page */
 body{
     line-height: 1.6;
     background-color:#f4f4f4 ;
@@ -8,7 +8,7 @@ body{
 }
 
 #container{
-    margin: 10px auto; /* Changed to auto for horizontal centering */
+    margin: 10px auto;
     max-width: 900px;
     padding: 10px;
     background-color: #fff;
@@ -26,7 +26,8 @@ article{
 
 header h1{
     text-align: center;
-    font-size: 2rem
+    font-size: 2rem;
+
  }
 
  article p {
@@ -74,7 +75,55 @@ header h1{
     color:#007bff;
 }
 
-/* login */
+/* header/navbar */
+.header-container {
+    position: relative;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.navbar li {
+    margin: 0 10px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    padding: 5px 10px;
+    transition: all 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #007bff;
+}
+
+.login {
+    background-color: #007bff;
+    color: white !important;
+    border-radius: 4px;
+}
+
+.login:hover {
+    background-color: #0056b3;
+    color: white !important;
+}
+
+/* login page */
 .form {
     max-width: 400px;
     margin: 0 auto;
