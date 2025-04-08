@@ -435,3 +435,15 @@ textarea {
     resize: none;
     font-family: Arial, sans-serif;
 }
+
+button.active{
+    background-color: #e7e4e4;
+}
+
+/* .editor-area {
+    border: 1px solid #ccc;
+    padding: 10px;
+    min-height: 150px;
+    font-family: inherit;
+    background-color: #ffffff;
+} */
