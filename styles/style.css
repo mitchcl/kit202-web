@@ -8,22 +8,37 @@ body{
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+body.dark-mode{
+    background-color: #1e1e1e;
+    color: #e4e4e4;
+}
 
 #container{
     margin: 10px auto;
     max-width: 900px;
     padding: 10px;
     background-color: #fff;
-    
+    transition: background-color 0.3s ease;  
 }
+
+body.dark-mode #container {
+    background-color: #2c2c2c;
+}
+
 article{
     margin-bottom: 40px;
     border-radius: 4px;
     border: 1px solid #c8c8c8;
     padding: 10px;
- }
+}
+
+body.dark-mode article {
+    background-color: #333;
+    border-color: #444;
+}
 
 h1 {
     font-size: 2rem;
@@ -48,6 +63,11 @@ h1 {
     color: #333;
     padding: 0;
     margin: 0;
+}
+
+body.dark-mode article p,
+body.dark-mode section p {
+    color: #ddd;
 }
 
 button {
@@ -76,6 +96,10 @@ table {
   tr:nth-child(even) {
     background-color: #dddddd;
   }
+
+body.dark-mode tr:nth-child(even) {
+    background-color: #444;
+}
 
 .more {
     display: none;
@@ -193,6 +217,12 @@ table {
     padding: 10px 20px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     box-sizing: border-box;
+    transition: background-color 0.3s ease;
+}
+
+body.dark-mode .header-container {
+    background-color: rgba(30, 30, 30, 0.95);
+    border-color: #444;
 }
 
 .logo {
@@ -258,6 +288,50 @@ table {
     background-color: #004085;
     color: white;
     border-bottom: 2px solid transparent;
+}
+
+/* dark mode toggle */
+.dark-mode {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dark-mode input[type="checkbox"] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.darkmode-slider {
+    width: 40px;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.darkmode-slider::before {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: white;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.3s ease;
+}
+
+input[type="checkbox"]:checked + .darkmode-slider {
+    background-color: #007bff;
+}
+
+input[type="checkbox"]:checked + .darkmode-slider::before {
+    transform: translateX(20px);
 }
 
 main {
