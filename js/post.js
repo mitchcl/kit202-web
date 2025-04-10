@@ -83,7 +83,9 @@ contentInput.addEventListener('input', function() {
             textarea.style.fontWeight = "normal";
         }else{
             textarea.style.fontWeight = "bold";
-        }
+        };
+        bold.classList.toggle("active");
+
     })
 
     document.getElementById('italic').addEventListener('click', function (){
@@ -93,6 +95,7 @@ contentInput.addEventListener('input', function() {
         }else{
             textarea.style.fontStyle = "italic";
         }
+        italic.classList.toggle("active");
     })
 
 
@@ -103,6 +106,7 @@ contentInput.addEventListener('input', function() {
         }else{
             textarea.style.textDecoration = "underline";
         }
+        underline.classList.toggle("active");
     })
 
 
