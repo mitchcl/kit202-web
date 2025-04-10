@@ -1,18 +1,19 @@
 function myFunction(event) {
-    var dots = event.target.previousElementSibling.querySelector(".dots");
-    var moreText = event.target.previousElementSibling.querySelector(".more");
-    var btn = event.target;
-  
-    if (dots.style.display === "none") {
-      dots.style.display = "inline";
-      btn.innerHTML = "Read more";
-      moreText.style.display = "none";
-    } else {
-      dots.style.display = "none";
-      btn.innerHTML = "Read less";
-      moreText.style.display = "inline";
-    }
+  const dots = event.target.previousElementSibling.querySelector(".dots");
+  const moreText = event.target.previousElementSibling.querySelector(".more");
+  const btn = event.target;
+
+  if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    btn.innerHTML = "Read more";
+    moreText.style.display = "none";
+  } else {
+    dots.style.display = "none";
+    btn.innerHTML = "Read less";
+    moreText.style.display = "inline";
+  }
 }
+
 
 // Fix for scroll button functionality
 document.addEventListener('DOMContentLoaded', function() {

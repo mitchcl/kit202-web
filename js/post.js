@@ -77,4 +77,35 @@ contentInput.addEventListener('input', function() {
         clearError(contentInput, 'contentErr');
     });
 
+    document.getElementById('bold').addEventListener('click', function (){
+        const textarea = document.getElementById('content');
+        if (textarea.style.fontWeight === "bold"){
+            textarea.style.fontWeight = "normal";
+        }else{
+            textarea.style.fontWeight = "bold";
+        }
+    })
+
+    document.getElementById('italic').addEventListener('click', function (){
+        const textarea = document.getElementById('content');
+        if (textarea.style.fontStyle === "italic"){
+            textarea.style.fontStyle = "normal";
+        }else{
+            textarea.style.fontStyle = "italic";
+        }
+    })
+
+
+    document.getElementById('underline').addEventListener('click', function (){
+        const textarea = document.getElementById('content');
+        if (textarea.style.textDecoration === "underline"){
+            textarea.style.textDecoration = "none";
+        }else{
+            textarea.style.textDecoration = "underline";
+        }
+    })
+
+
+
 });
+
