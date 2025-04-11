@@ -365,7 +365,7 @@ main {
     border: 1px solid var(--article-border-color);
     border-radius: 4px;
     box-sizing: border-box;
-    background-color: var(--container-background-color);
+    background-color: var(--background-color);
     color: var(--text-color);
 }
 
@@ -482,7 +482,7 @@ textarea {
     border-radius: 5px;
     resize: none;
     font-family: Arial, sans-serif;
-    background-color: var(--container-background-color);
+    background-color: var(--background-color);
     color: var(--text-color);
 }
 
