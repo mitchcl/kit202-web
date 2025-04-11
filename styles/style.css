@@ -3,7 +3,7 @@
     --background-color: #f4f4f4;
     --text-color: #333;
     --border-color:#fff8f8;
-    --container-background-color: #fff;
+    --container-background-color: #fcf8f8;
     --header-container-background-color:rgba(255, 255, 255, 0.88);
     --article-background-color: #fff;
     --article-border-color: #c8c8c8;
@@ -21,7 +21,7 @@ body.dark-mode {
     --background-color: #1e1e1e;
     --text-color: #e4e4e4;
     --border-color:#444;
-    --container-background-color: #2c2c2c;
+    --container-background-color: #2b2b2b;
     --header-container-background-color:rgba(30, 30, 30, 0.95);
     --article-background-color: #333;
     --article-border-color: #444;
