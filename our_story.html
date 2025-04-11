@@ -7,6 +7,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Reddit+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
         <script src="js/dark.js"></script>
+        <script src="js/script.js"></script>
         <meta charset="UTF-8">
         <meta name="author" content="Minh Hoang Truong, Mitch Clifford, Biki Das">
         <title>Our story - Blog</title>
@@ -24,7 +25,7 @@
                             <li><a href="write.html">Write Post</a></li>
                             <li><a href="login.html" class="login">Login</a></li>
                             <li>
-                                <div class="dark-mode">
+                                <div class="darkmodeswitch">
                                 <input type="checkbox" id="darkModeToggle" aria-label="Toggle dark mode">
                                 <label for="darkModeToggle" class="darkmode-slider"></label>
                                 </div>
@@ -88,12 +89,13 @@
                     <li><input checked type="checkbox" id="feature1"><label for="feature1">Responsive design (e.g., with CSS Flexbox or Grid) so the site dynamically adapts to different browser sizes</label></li>
                     <li><input checked type="checkbox" id="feature2"><label for="feature2">Sticky navigation so the menu remains pinned to the top or side of the page when scrolled</label></li>
                     <li><input checked type="checkbox" id="feature3"><label for="feature3">Scroll-to-top buttons that appear when the page is scrolled past a certain point</label></li>
-                    <li><input type="checkbox" id="feature4"><label for="feature4">Appropriate CSS animations for the reveal of post content on the older posts page</label></li>
+                    <li><input checked type="checkbox" id="feature4"><label for="feature4">Appropriate CSS animations for the reveal of post content on the older posts page</label></li>
                     <li><input checked type="checkbox" id="feature5"><label for="feature5">A choice between light and dark CSS themes that can be toggled by the user</label></li>
                 </ul>
+                <button class="scroll" onclick="scrollToTop()">Scroll to Top &uarr;</button>
             </main>
             <footer>
-                <p>© 2024 Blog - All rights reserved</p>
+                <p>© 2024 cool epic Blog - All rights reserved</p>
             </footer>
         </div>
     </body>
