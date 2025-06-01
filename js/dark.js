@@ -8,12 +8,14 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.classList.add("transition-colors");
         
         if (localStorage.getItem('darkMode') === 'enabled') {
+            document.documentElement.classList.add("dark-mode");
             document.body.classList.add("dark-mode");
             darkModeToggle.checked = true;
         }
         
         // Event listener to handle the changes in dark mode toggle
         darkModeToggle.addEventListener("change", function() {
+            document.documentElement.classList.toggle("dark-mode", this.checked);
             document.body.classList.toggle("dark-mode", this.checked);
             
             if (this.checked) {

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Minh Hoang Truong">
-  <link rel="stylesheet" href="styles/style1.css"><!-- For later -->
+  <link rel="stylesheet" href="css/style1.css"><!-- For later -->
   <title>Marathon 2025 Admin</title>
 </head>
 <body>
