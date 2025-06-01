@@ -4,11 +4,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="styles/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />    <link
       href="https://fonts.googleapis.com/css2?family=Reddit+Sans:ital,wght@0,200..900;1,200..900&display=swap"
       rel="stylesheet"
     />
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <script src="js/dark.js"></script>
     <script src="js/script.js"></script>
     <meta charset="UTF-8" />
@@ -29,11 +30,13 @@
               <li><a href="our_story.html">Our Story</a></li>
               <li><a href="older.html">Older Posts</a></li>
               <li><a href="write.html">Write Post</a></li>
-              <li><a href="login.html" class="login">Login</a></li>
-              <li>
+              <li><a href="login.html" class="login">Login</a></li>              <li>
                 <div class="darkmodeswitch">
                   <input type="checkbox" id="darkModeToggle" />
-                  <label for="darkModeToggle" class="darkmode-slider"></label>
+                  <label for="darkModeToggle" class="darkmode-slider">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon"></i>
+                  </label>
                 </div>
               </li>
             </ul>
@@ -81,7 +84,7 @@
               </span>
             </p>
             <!-- Read More and Read Less button -->
-            <button onclick="myFunction(event)" class="myBtn">Read more</button>
+            <button onclick="toggleReadMore(event)" class="readMore">Read more</button>
             <p class="tags">Tags: <span>Health, Life</span></p>
           </section>
         </article>
@@ -126,7 +129,7 @@
                 himenaeos.<br />
               </span>
             </p>
-            <button onclick="myFunction(event)" class="myBtn">Read more</button>
+            <button onclick="toggleReadMore(event)" class="readMore">Read more</button>
             <p class="tags">Tags: <span>Technology, AI</span></p>
           </section>
         </article>
@@ -170,7 +173,7 @@
               </span>
             </p>
             <!-- Read More and Read Less button -->
-            <button onclick="myFunction(event)" class="myBtn">Read more</button>
+            <button onclick="toggleReadMore(event)" class="readMore">Read more</button>
             <p class="tags">Tags: <span>Computer, Technology</span></p>
           </section>
         </article>
@@ -203,7 +206,7 @@
                 the next standard? Share your thoughts below!</span
               >
             </p>
-            <button onclick="myFunction(event)" class="myBtn">Read more</button>
+            <button onclick="toggleReadMore(event)" class="readMore">Read more</button>
             <p class="tags">
               Tags: <span>Mobile Technology, smartphones, Foldable Phones</span>
             </p>
@@ -237,7 +240,7 @@
                 love most in your dream machine?</span
               >
             </p>
-            <button onclick="myFunction(event)" class="myBtn">Read more</button>
+            <button onclick="toggleReadMore(event)" class="readMore">Read more</button>
             <p class="tags">Tags: <span>Laptop, Technology Trends</span></p>
           </section>
         </article>

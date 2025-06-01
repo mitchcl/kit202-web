@@ -1,12 +1,12 @@
 /* Define colors variables in :root for light mode */
 :root {
-  --background-color: #f4f4f4;
+  --background-color: #e9f2ff; /* Matches the original background */
   --text-color: #333;
   --border-color: #fff8f8;
   --form-color: #fcf8f8;
-  --container-background-color: #fcf8f8;
-  --header-container-background-color: rgba(255, 255, 255, 0.88);
-  --article-background-color: #fff;
+  --container-background-color: #fff;
+  --header-container-background-color: rgba(255, 255, 255, 0.98); /* More opaque navbar */
+  --article-background-color: linear-gradient(to right, #ffffff, #f8fcff);
   --article-border-color: #c8c8c8;
   --link-color: #007bff;
   --link-hover-color: #0056b3;
@@ -15,6 +15,9 @@
   --table-even-row-background-color: #dddddd;
   --scroll-button-background-color: #d4d4d4;
   --scroll-button-color: black;
+  --editor-background: #f5f9ff;
+  --input-background: #fff;
+  --accent-color: #0067b8;
 }
 
 /* Override variables and defined colors for dark mode */
@@ -23,17 +26,25 @@ body.dark-mode {
   --text-color: #e4e4e4;
   --border-color: #444;
   --form-color: #313030;
-  --container-background-color: #1e1e1e;
-  --header-container-background-color: rgba(30, 30, 30, 0.95);
+  --container-background-color: #2d2d2d;
+  --header-container-background-color: rgba(30, 30, 30, 0.99); /* More opaque navbar in dark mode */
   --article-background-color: #333;
   --article-border-color: #444;
-  --link-color: #007bff;
-  --link-hover-color: #0056b3;
-  --button-background-color: #007bff;
-  --button-hover-background-color: #0056b3;
+  --link-color: #7bafd4; /* Softer blue for links in dark mode */
+  --link-hover-color: #a0c8e6; /* Lighter blue on hover */
+  --button-background-color: #0067b8;
+  --button-hover-background-color: #0078d4;
   --table-even-row-background-color: #444;
   --scroll-button-background-color: #444;
   --scroll-button-color: #fff;
+  --editor-background: #2a2a2a;
+  --input-background: #252525;
+  --accent-color: #6ba4cc; /* Softer accent color for dark mode */
+}
+
+/* Add transition class for smooth color changes */
+.transition-colors * {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* logo will turn white when dark mode is active */
@@ -45,33 +56,35 @@ body.dark-mode .logo {
 /* home page */
 body {
   line-height: 1.6;
-  background-color: #e9f2ff; /* Slightly darker blue background */
+  background-color: var(--background-color);
   margin: 0;
   padding: 0;
   font-family: "Reddit Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  color: #333;
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #container {
   margin: 10px auto;
   max-width: 900px;
   padding: 10px;
-  background-color: #fff;
+  background-color: var(--container-background-color);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); /* Stronger shadow */
   border-radius: 8px; /* Add rounded corners */
   border-top: 4px solid #0067b8; /* Add border accent */
+  transition: background-color 0.3s ease;
 }
 
 article {
   margin-bottom: 40px;
   border-radius: 8px;
-  border: 1px solid #c8c8c8;
+  border: 1px solid var(--article-border-color);
   padding: 15px;
   transition: all 0.3s ease;
-  background: linear-gradient(to right, #ffffff, #f8fcff);
+  background: var(--article-background-color);
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
   border-left: 4px solid #0067b8;
   position: relative;
@@ -79,9 +92,7 @@ article {
 }
 
 article:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-  border-left: 4px solid #ff6b6b; /* Change accent color on hover */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 article:after {
@@ -91,7 +102,7 @@ article:after {
   left: 0;
   width: 100%;
   height: 4px;
-  background: linear-gradient(90deg, #0056b3, #007bff, #5a9bff);
+  background: linear-gradient(90deg, var(--link-hover-color), var(--link-color), var(--accent-color));
   transform: scaleX(0);
   transform-origin: bottom right;
   transition: transform 0.4s ease;
@@ -106,7 +117,7 @@ h1 {
   font-size: 2.2rem;
   margin: 15px 0;
   text-align: center;
-  color: #0056b3; /* Darker blue for headings */
+  color: var(--link-color); /* Use variable for consistency */
   position: relative;
   padding-bottom: 10px;
 }
@@ -118,7 +129,7 @@ h1:after {
   left: 50%;
   width: 80px;
   height: 3px;
-  background: linear-gradient(90deg, #0056b3, #007bff);
+  background: linear-gradient(90deg, var(--link-hover-color), var(--link-color));
   transform: translateX(-50%);
   border-radius: 3px;
 }
@@ -127,8 +138,8 @@ h2 {
   font-size: 1.5rem;
   margin: 10px 0;
   text-align: center;
-  color: #0067b8; /* Blue for subheadings */
-  border-bottom: 2px dotted #e1ecf9;
+  color: var(--link-color); /* Use variable for consistency */
+  border-bottom: 2px dotted var(--border-color);
   padding-bottom: 5px;
 }
 
@@ -165,9 +176,11 @@ table {
 
 td,
 th {
-  border: 1px solid #dddddd;
+  border: 1px solid var(--article-border-color);
   text-align: left;
   padding: 8px;
+  color: var(--text-color);
+  transition: border-color 0.3s ease, color 0.3s ease;
 }
 
 tr:nth-child(even) {
@@ -176,28 +189,82 @@ tr:nth-child(even) {
 
 .more {
   display: none;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  overflow: hidden;
+  transform: translateY(-20px);
+}
+
+.more.shown {
+  display: inline;
+  max-height: 1000px;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .dots {
   display: inline;
+  transition: opacity 0.3s ease-in-out;
 }
 
-.myBtn {
-  background-color: #007bff;
+.dots.hidden {
+  display: none;
+  opacity: 0;
+}
+
+.readMore {
+  background-color: var(--button-background-color);
   color: white;
   padding: 8px 18px;
   border: none;
   margin-top: 15px;
   border-radius: 25px;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   font-weight: 500;
   box-shadow: 0 2px 4px rgba(0, 123, 255, 0.3);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 
-.myBtn:hover {
-  background-color: #0056b3;
+.readMore:hover {
+  background-color: var(--button-hover-background-color);
   box-shadow: 0 4px 8px rgba(0, 123, 255, 0.4);
   transform: translateY(-2px);
+}
+
+.readMore:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%);
+  transform-origin: 50% 50%;
+}
+
+.readMore:focus:not(:active)::after {
+  animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  20% {
+    transform: scale(25, 25);
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(40, 40);
+  }
 }
 
 .tags {
@@ -360,7 +427,6 @@ tr:nth-child(even) {
 }
 
 .navbar .login.active {
-  background-color: #004085;
   color: white;
   border-bottom: 2px solid transparent;
 }
@@ -406,9 +472,10 @@ main {
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--article-border-color);
   border-radius: 5px;
-  background-color: #f9f9f9;
+  background-color: var(--form-color);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .login-input {
@@ -434,10 +501,20 @@ main {
 .login-input input.error {
   border: 2px solid #ff3860;
   background-color: #fff0f3;
+  color: #333; /* Ensure text is dark on light background */
 }
 .login-input textarea.error {
   border: 2px solid #ff3860;
   background-color: #fff0f3;
+  color: #333; /* Ensure text is dark on light background */
+}
+
+/* Dark mode specific error styling */
+body.dark-mode .login-input input.error,
+body.dark-mode .login-input textarea.error {
+  background-color: #3a1a1f; /* Darker red background for dark mode */
+  color: #ff9999; /* Lighter red text for dark mode */
+  border: 2px solid #ff5252;
 }
 .btn {
   background-color: #007bff;
@@ -479,7 +556,6 @@ main {
 .tabs {
   display: flex;
   margin-bottom: 20px;
-  border-bottom: 1px solid #ddd;
 }
 
 .tab-btn {
@@ -564,7 +640,7 @@ textarea {
 }
 
 button.active {
-  background-color: #d3d3d3;
+  background-color: #707070;
 }
 
 /* dark mode toggle */
@@ -635,12 +711,14 @@ input[type="checkbox"]:checked + .darkmode-slider::before {
 .about-section p {
   margin-bottom: 15px;
   line-height: 1.7;
-  color: #444;
+  color: var(--text-color);
+  transition: color 0.3s ease;
 }
 
 .about-section h2 {
-  color: #0056b3;
+  color: var(--accent-color);
   margin-bottom: 15px;
+  transition: color 0.3s ease;
 }
 
 /* Editor area formatting */
@@ -649,19 +727,21 @@ input[type="checkbox"]:checked + .darkmode-slider::before {
   display: flex;
   gap: 5px;
   padding: 5px;
-  background-color: #f5f9ff;
+  background-color: var(--editor-background);
   border-radius: 4px;
-  border: 1px solid #e1e4e8;
+  border: 1px solid var(--border-color);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .editor-area button {
   padding: 5px 12px;
-  background-color: #fff;
-  border: 1px solid #ddd;
+  background-color: var(--input-background);
+  border: 1px solid var(--border-color);
   border-radius: 3px;
   cursor: pointer;
   font-size: 14px;
-  transition: all 0.2s ease;
+  color: var(--text-color);
+  transition: all 0.2s ease, background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .editor-area button:hover {
@@ -695,6 +775,29 @@ input[type="checkbox"]:checked + .darkmode-slider::before {
 
 .about-section li {
   margin-bottom: 8px;
+  color: var(--text-color);
+  transition: color 0.3s ease;
+}
+
+/* Ensure checkbox labels in HD extensions section show properly in dark mode */
+input[type="checkbox"] + label {
+  color: var(--text-color);
+  transition: color 0.3s ease;
+}
+
+/* Style for links in the about-section and references section */
+.about-section a, 
+ul a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  border-bottom: 1px dotted var(--accent-color);
+}
+
+.about-section a:hover, 
+ul a:hover {
+  color: var(--link-hover-color);
+  border-bottom: 1px solid var(--link-hover-color);
 }
 
 /* Improve textarea appearance */
@@ -753,19 +856,19 @@ input[type="checkbox"]:checked + .darkmode-slider::before {
 .form-group input {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--article-border-color);
   border-radius: 4px;
   box-sizing: border-box;
-  background-color: var(--background-color);
+  background-color: var(--input-background);
   color: var(--text-color);
   font-family: inherit;
-  transition: border 0.3s ease;
+  transition: border 0.3s ease, background-color 0.3s ease, color 0.3s ease;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: #007bff;
+  border-color: var(--link-color);
   box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
 }
 
@@ -780,6 +883,15 @@ input[type="checkbox"]:checked + .darkmode-slider::before {
 .form-group textarea.error {
   border: 2px solid #ff3860;
   background-color: #fff0f3;
+  color: #333; /* Ensure text is dark on light background */
+}
+
+/* Dark mode specific error styling for form groups */
+body.dark-mode .form-group input.error,
+body.dark-mode .form-group textarea.error {
+  background-color: #3a1a1f; /* Darker red background for dark mode */
+  color: #ff9999; /* Lighter red text for dark mode */
+  border: 2px solid #ff5252;
 }
 
 /* Make textarea and preview work side by side */
