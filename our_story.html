@@ -1,104 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="styles/style.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Reddit+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
-        <script src="js/dark.js"></script>
-        <script src="js/script.js"></script>
-        <meta charset="UTF-8">
-        <meta name="author" content="Minh Hoang Truong, Mitch Clifford, Biki Das">
-        <title>Our story - Blog</title>
-    </head>
-    <body>
-        <div id="container">
-            <header>
-                <div class="header-container">
-                    <a href="index.html"><img src="img/logoipsum-340.svg" alt="Logo" class="logo"></a>
-                    <nav class="navbar">
-                        <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="our_story.html" class="active">Our Story</a></li>
-                            <li><a href="older.html">Older Posts</a></li>
-                            <li><a href="write.html">Write Post</a></li>
-                            <li><a href="login.html" class="login">Login</a></li>
-                            <li>
-                                <div class="darkmodeswitch">
-                                <input type="checkbox" id="darkModeToggle" aria-label="Toggle dark mode">
-                                <label for="darkModeToggle" class="darkmode-slider"></label>
-                                </div>
-                            </li>
-                        </ul>
-                    </nav>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Reddit+Sans:ital,wght@0,200..900;1,200..900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="js/dark.js"></script>
+    <script src="js/script.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="author" content="Minh Hoang Truong, Mitch Clifford, Biki Das" />
+    <title>Our story - Blog</title>
+  </head>
+  <body>
+    <div id="container">
+      <header>
+        <div class="header-container">
+          <a href="index.html"
+            ><img src="img/logoipsum-340.svg" alt="Logo" class="logo"
+          /></a>
+          <div class="blog-title">TechLifeInsights</div>
+          <nav class="navbar">
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="our_story.html" class="active">Our Story</a></li>
+              <li><a href="older.html">Older Posts</a></li>
+              <li><a href="write.html">Write Post</a></li>
+              <li><a href="login.html" class="login">Login</a></li>
+              <li>
+                <div class="darkmodeswitch">
+                  <input
+                    type="checkbox"
+                    id="darkModeToggle"
+                    aria-label="Toggle dark mode"
+                  />
+                  <label for="darkModeToggle" class="darkmode-slider"></label>
                 </div>
-            </header>
-            <main>
-                <h1>Our story</h1>
-                <h2>Creators</h2>
-                <table>
-                    <tr>
-                        <th>Name</th>
-                        <th>ID</th>
-                    </tr>
-                    <tr>
-                        <td>Minh Hoang Truong</td>
-                        <td>595677</td>
-                    </tr>
-                    <tr>
-                        <td>Mitch Clifford</td>
-                        <td>615286</td>
-                    </tr>
-                    <tr>
-                        <td>Biki Das</td>
-                        <td>680224</td>
-                    </tr>
-                </table>
-                <h2>Development log</h2>
-                <ul>
-                    <li>Mar 28 2025: Created the initial version of the website.</li>
-                    <li>Mar 28 2025: Added basic structure.</li>
-                    <li>Mar 29 2025: Added CSS to make the articles look better.</li>
-                    <li>Mar 30 2025: Added JS for the read more function.</li>
-                    <li>Apr 1 2025: Integrated login/register page. Updated navigation bar/header, cleaned up CSS.</li>
-                    <li>Apr 1 2025: Introduced base for responsive design.</li>
-                    <li>Apr 1 2025: Made this page.</li>
-                    <li>Apr 1 2025: Made older page.</li>
-                    <li>Apr 1 2025: Made write post page.</li>
-                    <li>Apr 1 2025: Made login/registration page.</li>
-                    <li>Apr 1 2025: Added JS (login.js) for write post page for alerting users about empty fields</li>
-                    <li>Apr 1 2025: Added JS (post.js) for write post page for alerting users about empty fields</li>
-                    <li>Apr 7 2025: Added darkmode-slider and write some code to darkModeToggle</li>
-                    <li>Apr 10 2025: Added dark.js for darkModeToggle.</li>
-                    <li>Apr 10 2025: Updated post.js for Style Menu(bold, italic, underline), allowing users to style their content (target entire textarea)</li>
-                    
-                </ul>
-                <h2>References</h2>
-                <ul>
-                    <li><a href="https://logoipsum.com/artwork/340">Lorum ipsum logo</a></li>
-                    <li><a href="https://loremipsum.io/">Lorem ipsum text</a></li>
-                    <li><a href="https://fonts.google.com/specimen/Reddit+Sans">Reddit Sans, Google Fonts</a></li>
-                    <li><a href="https://www.w3schools.com/howto/howto_js_topnav_responsive.asp">Responsive navbars, W3Schools</a></li>
-                    <li><a href="https://toolstud.io/web/charmap.php?encoded=rarr">Right arrow character</a></li>
-                    <li><a href="https://www.youtube.com/watch?v=Da8Zr2vX5ho">Style Menu</a></li>
-                    <li><a href="https://stackoverflow.com/questions/64506327/read-more-less-button-for-multiple-content-javascript?rq=1">Read more and Read less button</a></li>
-                    <li><a href="https://www.youtube.com/watch?v=gzCUq_VQ7Y8">Idea for dark mode button/slider.</a></li>
-                    <li><a href="https://www.youtube.com/watch?v=cfDV6iGXPMY&t=159s">Dark mode color change (defining color variables)</a></li>
-                </ul>
-                <h2>HD extensions</h2>
-                <ul>
-                    <li><input checked type="checkbox" id="feature1"><label for="feature1">Responsive design (e.g., with CSS Flexbox or Grid) so the site dynamically adapts to different browser sizes</label></li>
-                    <li><input checked type="checkbox" id="feature2"><label for="feature2">Sticky navigation so the menu remains pinned to the top or side of the page when scrolled</label></li>
-                    <li><input checked type="checkbox" id="feature3"><label for="feature3">Scroll-to-top buttons that appear when the page is scrolled past a certain point</label></li>
-                    <li><input checked type="checkbox" id="feature4"><label for="feature4">Appropriate CSS animations for the reveal of post content on the older posts page</label></li>
-                    <li><input checked type="checkbox" id="feature5"><label for="feature5">A choice between light and dark CSS themes that can be toggled by the user</label></li>
-                </ul>
-                <button class="scroll" onclick="scrollToTop()">Scroll to Top &uarr;</button>
-            </main>
-            <footer>
-                <p>© 2025 cool epic Blog - All rights reserved</p>
-            </footer>
+              </li>
+            </ul>
+          </nav>
         </div>
-    </body>
+      </header>
+      <main>
+        <h1>Our story</h1>
+
+        <div class="about-section">
+          <h2>About TechLifeInsights</h2>
+          <p>
+            Welcome to TechLifeInsights! Our blog is dedicated to exploring the
+            intersection of technology and modern lifestyle. We aim to provide
+            insightful commentary, practical advice, and thought-provoking
+            perspectives on how technology shapes our daily lives.
+          </p>
+          <p>
+            Our content focuses on tech trends, digital wellness, productivity
+            tools, and maintaining balance in an increasingly connected world.
+            We believe technology should enhance our lives, not complicate them.
+          </p>
+          <p>
+            The blue color theme represents innovation, trust, and clarity -
+            values we uphold in all our content. Our minimalist design allows
+            readers to focus on what matters most: the insights within each
+            article.
+          </p>
+        </div>
+
+        <div class="about-section">
+          <h2>Interactive Features</h2>
+          <p>
+            Our blog includes several interactive features to enhance user
+            engagement:
+          </p>
+          <ul>
+            <li>
+              <strong>Post Reveal:</strong> The "Read More" functionality allows
+              readers to expand articles directly on the page, providing a
+              seamless reading experience.
+            </li>
+            <li>
+              <strong>Text Formatting:</strong> When writing posts, you can use
+              bold, italic, and underline formatting to emphasize important
+              points.
+            </li>
+            <li>
+              <strong>Dark Mode:</strong> Toggle between light and dark themes
+              based on your reading preference.
+            </li>
+            <li>
+              <strong>Responsive Design:</strong> Enjoy our content on any
+              device, from desktop to mobile.
+            </li>
+          </ul>
+        </div>
+
+        <h2>Creators</h2>
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>ID</th>
+          </tr>
+          <tr>
+            <td>Minh Hoang Truong</td>
+            <td>595677</td>
+          </tr>
+          <tr>
+            <td>Mitch Clifford</td>
+            <td>615286</td>
+          </tr>
+          <tr>
+            <td>Biki Das</td>
+            <td>680224</td>
+          </tr>
+        </table>
+        <h2>Development log</h2>
+        <ul>
+          <li>Mar 28 2025: Created the initial version of the website.</li>
+          <li>Mar 28 2025: Added basic structure.</li>
+          <li>Mar 29 2025: Added CSS to make the articles look better.</li>
+          <li>Mar 30 2025: Added JS for the read more function.</li>
+          <li>
+            Apr 1 2025: Integrated login/register page. Updated navigation
+            bar/header, cleaned up CSS.
+          </li>
+          <li>Apr 1 2025: Introduced base for responsive design.</li>
+          <li>Apr 1 2025: Made this page.</li>
+          <li>Apr 1 2025: Made older page.</li>
+          <li>Apr 1 2025: Made write post page.</li>
+          <li>Apr 1 2025: Made login/registration page.</li>
+          <li>
+            Apr 1 2025: Added JS (login.js) for write post page for alerting
+            users about empty fields
+          </li>
+          <li>
+            Apr 1 2025: Added JS (post.js) for write post page for alerting
+            users about empty fields
+          </li>
+          <li>
+            Apr 7 2025: Added darkmode-slider and write some code to
+            darkModeToggle
+          </li>
+          <li>Apr 10 2025: Added dark.js for darkModeToggle.</li>
+          <li>
+            Apr 10 2025: Updated post.js for Style Menu(bold, italic,
+            underline), allowing users to style their content (target entire
+            textarea)
+          </li>
+        </ul>
+        <h2>References</h2>
+        <ul>
+          <li>
+            <a href="https://logoipsum.com/artwork/340">Lorum ipsum logo</a>
+          </li>
+          <li><a href="https://loremipsum.io/">Lorem ipsum text</a></li>
+          <li>
+            <a href="https://fonts.google.com/specimen/Reddit+Sans"
+              >Reddit Sans, Google Fonts</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.w3schools.com/howto/howto_js_topnav_responsive.asp"
+              >Responsive navbars, W3Schools</a
+            >
+          </li>
+          <li>
+            <a href="https://toolstud.io/web/charmap.php?encoded=rarr"
+              >Right arrow character</a
+            >
+          </li>
+          <li>
+            <a href="https://www.youtube.com/watch?v=Da8Zr2vX5ho">Style Menu</a>
+          </li>
+          <li>
+            <a
+              href="https://stackoverflow.com/questions/64506327/read-more-less-button-for-multiple-content-javascript?rq=1"
+              >Read more and Read less button</a
+            >
+          </li>
+          <li>
+            <a href="https://www.youtube.com/watch?v=gzCUq_VQ7Y8"
+              >Idea for dark mode button/slider.</a
+            >
+          </li>
+          <li>
+            <a href="https://www.youtube.com/watch?v=cfDV6iGXPMY&t=159s"
+              >Dark mode color change (defining color variables)</a
+            >
+          </li>
+        </ul>
+        <h2>HD extensions</h2>
+        <ul>
+          <li>
+            <input checked type="checkbox" id="feature1" /><label for="feature1"
+              >Responsive design (e.g., with CSS Flexbox or Grid) so the site
+              dynamically adapts to different browser sizes</label
+            >
+          </li>
+          <li>
+            <input checked type="checkbox" id="feature2" /><label for="feature2"
+              >Sticky navigation so the menu remains pinned to the top or side
+              of the page when scrolled</label
+            >
+          </li>
+          <li>
+            <input checked type="checkbox" id="feature3" /><label for="feature3"
+              >Scroll-to-top buttons that appear when the page is scrolled past
+              a certain point</label
+            >
+          </li>
+          <li>
+            <input checked type="checkbox" id="feature4" /><label for="feature4"
+              >Appropriate CSS animations for the reveal of post content on the
+              older posts page</label
+            >
+          </li>
+          <li>
+            <input checked type="checkbox" id="feature5" /><label for="feature5"
+              >A choice between light and dark CSS themes that can be toggled by
+              the user</label
+            >
+          </li>
+        </ul>
+        <button class="scroll" onclick="scrollToTop()">
+          Scroll to Top &uarr;
+        </button>
+      </main>
+      <footer>
+        <p>© 2025 cool epic Blog - All rights reserved</p>
+      </footer>
+    </div>
+  </body>
 </html>

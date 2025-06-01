@@ -1,76 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="styles/style.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Reddit+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
-        <script src="js/dark.js"></script>
-        <script src="js/post.js"></script>
-        <meta charset="UTF-8">
-        <meta name="author" content="Minh Hoang Truong, Mitch Clifford, Biki Das">
-        <title>Login - Blog</title>
-    </head>
-    <body>
-        <div id="container">
-            <header>
-                <div class="header-container">
-                    <a href="index.html"><img src="img/logoipsum-340.svg" alt="Logo" class="logo"></a>
-                    <nav class="navbar">
-                        <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="our_story.html">Our Story</a></li>
-                            <li><a href="older.html">Older Posts</a></li>
-                            <li><a href="write.html" class="active">Write Post</a></li>
-                            <li><a href="login.html" class="login">Login</a></li>
-                            <li>
-                                <div class="darkmodeswitch">
-                                <input type="checkbox" id="darkModeToggle">
-                                <label for="darkModeToggle" class="darkmode-slider"></label>
-                                </div>
-                            </li>
-                        </ul>
-                    </nav>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Reddit+Sans:ital,wght@0,200..900;1,200..900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <script src="js/dark.js"></script>
+    <script src="js/post.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="author" content="Minh Hoang Truong, Mitch Clifford, Biki Das" />
+    <title>Write Post - TechLifeInsights</title>
+  </head>
+  <body>
+    <div id="container">
+      <header>
+        <div class="header-container">
+          <a href="index.html"
+            ><img src="img/logoipsum-340.svg" alt="Logo" class="logo"
+          /></a>
+          <div class="blog-title">TechLifeInsights</div>
+          <nav class="navbar">
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="our_story.html">Our Story</a></li>
+              <li><a href="older.html">Older Posts</a></li>
+              <li><a href="write.html" class="active">Write Post</a></li>
+              <li><a href="login.html" class="login">Login</a></li>              <li>
+                <div class="darkmodeswitch">
+                  <input type="checkbox" id="darkModeToggle" />
+                  <label for="darkModeToggle" class="darkmode-slider">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon"></i>
+                  </label>
                 </div>
-            </header>
-            <main>
-                <h1>Write a post!</h1>
-                <div class="writepost-container">
-                    <div id="login-tab" class="tab-content active">
-                        <form action="index.html" id="posts" novalidate>
-                            <div class="login-input">
-                                <label for="title">Post Title</label>
-                                <input type="text" id="title" name="title" placeholder="Enter your title" required>
-                                <span class="error" id="titleError"></span>
-                            </div>
-                            <div class="login-input">
-                                <label for="tags">Tags</label>
-                                <input type="text" id="tags" name="tags" placeholder="e.g, Technology, Health" required>
-                                <span class="error" id="tagsError"></span>
-                            </div>
-                            <div class="login-input">
-                                <label for="content">Post Content</label>
-                                <textarea id="content" name="content" placeholder="Write here..."></textarea>
-                                <span class="error" id="contentErr"></span>
-                            </div>
-                            <div class="editor-area">
-                                <button id="bold" type="button"><b>B</b></button>
-                                <button id="italic" type="button"><i>I</i></button>
-                                <button id="underline" type="button"><u>U</u></button>
-                            </div>
-                            <div class="btn-group">
-                                <button type="submit" class="btn">Publish</button>
-                                <button type="reset" class="btn reset-btn">Reset</button>
-                            </div>
-                         
-                        </form>
-                    </div>
-                </div>
-            </main>
-            <footer>
-                <p>© 2025 cool epic Blog - All rights reserved</p>
-            </footer>
+              </li>
+            </ul>
+          </nav>
         </div>
-    </body>
+      </header>
+      <main>
+        <h1>Write a post!</h1>
+        <div class="writepost-container">
+          <form action="index.html" id="posts" novalidate>
+            <div class="form-group">
+              <label for="title">Post Title</label>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                placeholder="Enter your title (max 80 characters)"
+                maxlength="80"
+                required
+              />
+              <span class="error" id="titleError"></span>
+              <small class="char-count" id="titleCount">0/80 characters</small>
+            </div>
+            
+            <div class="form-group">
+              <label for="tags">Tags</label>
+              <input
+                type="text"
+                id="tags"
+                name="tags"
+                placeholder="e.g., Technology, Health, Travel (comma separated)"
+                required
+              />
+              <span class="error" id="tagsError"></span>
+            </div>
+            
+            <div class="form-group">
+              <label for="content">Post Content</label>              
+              <div class="editor-toolbar">
+                <div class="toolbar-section formatting-options">
+                  <button type="button" id="bold" title="Bold" class="format-btn"><i class="fas fa-bold"></i></button>
+                  <button type="button" id="italic" title="Italic" class="format-btn"><i class="fas fa-italic"></i></button>
+                  <button type="button" id="underline" title="Underline" class="format-btn"><i class="fas fa-underline"></i></button>
+                  <button type="button" id="clear-selected" title="Clear formatting for selected text" class="format-btn"><i class="fa-solid fa-text-slash"></i></button>
+                </div>
+              </div>              
+              <div id="editor-container">
+                <div 
+                  id="content-editor" 
+                  class="content-editable" 
+                  contenteditable="true"
+                  data-placeholder="Write your post here... Select text to apply formatting or use the buttons above."
+                ></div>
+                <textarea id="content" name="content" style="display:none;" required></textarea>
+                <div class="editor-info">
+                  <span class="formatting-hint">
+                    <i class="fas fa-info-circle"></i> 
+                    Tip: Select text to format specific sections, then click on a format button.
+                  </span>
+                </div>
+              </div>
+              <span class="error" id="contentErr"></span>
+            </div>            <div class="btn-group">
+              <button type="submit" class="btn">
+                <i class="fas fa-paper-plane"></i> Publish Post
+              </button>
+              <button type="reset" class="btn reset-btn">
+                <i class="fas fa-times"></i> Clear Form
+              </button>
+            </div>
+          </form>
+        </div>      </main>
+      <footer>
+        <p>© 2025 TechLifeInsights - All rights reserved</p>
+      </footer>
+    </div>
+  </body>
 </html>

@@ -1,0 +1,578 @@
+document.addEventListener("DOMContentLoaded", function () {
+  // Form elements
+  const postForm = document.getElementById("posts");
+  const titleInput = document.getElementById("title");
+  const tagsInput = document.getElementById("tags");
+  const contentInput = document.getElementById("content");
+  const resetBtn = document.querySelector(".reset-btn");
+  const titleCount = document.getElementById("titleCount");
+  
+  // Format buttons
+  const boldBtn = document.getElementById("bold");
+  const italicBtn = document.getElementById("italic");
+  const underlineBtn = document.getElementById("underline");
+  const clearSelectedBtn = document.getElementById("clear-selected");
+  const resetFormatBtn = document.getElementById("reset-format");
+  
+  // Formatting state for tracking active formatting modes
+  let formatState = {
+    bold: false,
+    italic: false,
+    underline: false
+  };
+  
+  // Store formatted regions
+  let formattedRegions = [];
+  
+  // Title character count update
+  titleInput.addEventListener("input", function() {
+    const count = titleInput.value.length;
+    titleCount.textContent = `${count}/80 characters`;
+    
+    // Reset classes
+    titleCount.classList.remove("warning", "danger");
+    
+    // Add warning color if approaching limit
+    if (count > 70 && count <= 80) {
+      titleCount.classList.add("warning");
+    } else if (count > 80) {
+      titleCount.classList.add("danger");
+      // Display error about character limit
+      displayError(titleInput, "titleError", "Title cannot exceed 80 characters");
+    } else {
+      // Clear error if title is within limits and not empty
+      if (titleInput.value.trim() !== "") {
+        clearError(titleInput, "titleError");
+      }
+    }
+  });
+
+  // Clear tag error when input changes
+  tagsInput.addEventListener("input", function() {
+    if (tagsInput.value.trim() !== "") {
+      clearError(tagsInput, "tagsError");
+    }
+  });
+  
+  // Clear content error when input changes
+  contentInput.addEventListener("input", function() {
+    if (contentInput.value.trim() !== "") {
+      clearError(contentInput, "contentErr");
+    }
+    
+    // Update visual representation of formatted text
+    updateFormattedText();
+  });
+  // Form validation
+  postForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+    
+    // Clear all previous errors
+    clearError(titleInput, "titleError");
+    clearError(tagsInput, "tagsError");
+    clearError(contentInput, "contentErr");
+    
+    let isValid = true;
+    
+    // Title validation
+    if (!titleInput.value.trim()) {
+      displayError(titleInput, "titleError", "Title cannot be empty");
+      isValid = false;
+    } else if (titleInput.value.length > 80) {
+      displayError(titleInput, "titleError", "Title cannot exceed 80 characters");
+      isValid = false;
+    }
+    
+    // Tags validation
+    if (!tagsInput.value.trim()) {
+      displayError(tagsInput, "tagsError", "Please provide at least one tag");
+      isValid = false;
+    }
+    
+    // Content validation
+    if (!contentInput.value.trim()) {
+      displayError(contentInput, "contentErr", "Post content cannot be empty");
+      isValid = false;
+    }
+    
+    // Submit if valid - convert formatted regions to markdown before submission
+    if (isValid) {
+      // Convert formatted regions to markdown for storage/processing
+      const markdownContent = convertToMarkdown();
+      
+      // Create a hidden input to store the markdown version
+      const markdownInput = document.createElement('input');
+      markdownInput.type = 'hidden';
+      markdownInput.name = 'markdown_content';
+      markdownInput.value = markdownContent;
+      postForm.appendChild(markdownInput);
+      
+      postForm.submit();
+    }
+  });
+  
+  // Helper functions for error handling
+  function displayError(inputElement, errorId, errorMessage) {
+    const errorElement = document.getElementById(errorId);
+    errorElement.textContent = errorMessage;
+    inputElement.classList.add("error");
+  }
+  
+  function clearError(inputElement, errorId) {
+    const errorElement = document.getElementById(errorId);
+    errorElement.textContent = "";
+    inputElement.classList.remove("error");
+  }  // Reset button handler
+  resetBtn.addEventListener("click", function() {
+    // Clear errors
+    clearError(titleInput, "titleError");
+    clearError(tagsInput, "tagsError");
+    clearError(contentInput, "contentErr");
+    
+    // Reset character count
+    titleCount.textContent = "0/80 characters";
+    titleCount.classList.remove("warning", "danger");
+    
+    // Reset formatting
+    resetFormatting();
+  });
+  
+  // Get selection information
+  function getSelectionInfo() {
+    const textarea = contentInput;
+    return {
+      start: textarea.selectionStart,
+      end: textarea.selectionEnd,
+      text: textarea.value.substring(textarea.selectionStart, textarea.selectionEnd),
+      hasSelection: textarea.selectionStart !== textarea.selectionEnd
+    };
+  }
+  
+  // Apply formatting to selected text
+  function applyFormatting(formatType) {
+    const selection = getSelectionInfo();
+    
+    // If no text is selected, toggle formatting mode for next input
+    if (!selection.hasSelection) {
+      // Toggle active formatting state for next input
+      formatState[formatType] = !formatState[formatType];
+      updateFormatButtons();
+      return;
+    }
+    
+    // Format the selected text
+    const selStart = selection.start;
+    const selEnd = selection.end;
+    
+    // Check if the selected region already has this formatting
+    const hasFormatting = formattedRegions.some(region => 
+      region.type === formatType && 
+      region.start === selStart && 
+      region.end === selEnd
+    );
+    
+    if (hasFormatting) {
+      // Remove the formatting
+      formattedRegions = formattedRegions.filter(region => 
+        !(region.type === formatType && 
+          region.start === selStart && 
+          region.end === selEnd)
+      );
+    } else {
+      // Add the formatting
+      formattedRegions.push({
+        type: formatType,
+        start: selStart,
+        end: selEnd
+      });
+    }
+    
+    // Apply visual formatting immediately
+    updateFormattedText();
+    
+    // Update buttons state
+    updateFormatButtons();
+  }
+  
+  // Update the visual representation of the formatted text
+  function updateFormattedText() {
+    // Create a preview element if it doesn't exist
+    let previewEl = document.getElementById('formatted-preview');
+    if (!previewEl) {
+      previewEl = document.createElement('div');
+      previewEl.id = 'formatted-preview';
+      previewEl.className = 'formatted-preview';
+      contentInput.insertAdjacentElement('afterend', previewEl);
+      
+      // Style the preview element to display above the textarea
+      previewEl.style.position = 'absolute';
+      previewEl.style.top = '0';
+      previewEl.style.left = '0';
+      previewEl.style.width = '100%';
+      previewEl.style.height = '100%';
+      previewEl.style.backgroundColor = 'transparent';
+      previewEl.style.zIndex = '10';
+      previewEl.style.pointerEvents = 'none';
+      previewEl.style.overflow = 'hidden';
+      previewEl.style.whiteSpace = 'pre-wrap';
+      previewEl.style.padding = '10px';
+      previewEl.style.boxSizing = 'border-box';
+      
+      // Make sure the container has position relative
+      const editorContainer = document.getElementById('editor-container');
+      editorContainer.style.position = 'relative';
+    }
+    
+    // Generate HTML for the preview
+    let html = '';
+    const content = contentInput.value;
+    
+    // Create spans for each region of text
+    let currentPosition = 0;
+    const sortedRegions = [...formattedRegions].sort((a, b) => a.start - b.start);
+    
+    for (const region of sortedRegions) {
+      // Add unformatted text before this region
+      if (currentPosition < region.start) {
+        html += escapeHTML(content.substring(currentPosition, region.start));
+      }
+      
+      // Add the formatted text
+      const formattedText = content.substring(region.start, region.end);
+      let classes = '';
+      
+      // Find all formatting that applies to this region
+      const appliedFormats = formattedRegions.filter(r => 
+        r.start === region.start && r.end === region.end
+      );
+      
+      appliedFormats.forEach(format => {
+        classes += format.type + ' ';
+      });
+      
+      html += `<span class="${classes.trim()}">${escapeHTML(formattedText)}</span>`;
+      
+      currentPosition = region.end;
+    }
+    
+    // Add remaining unformatted text
+    if (currentPosition < content.length) {
+      html += escapeHTML(content.substring(currentPosition));
+    }
+    
+    // Update the preview
+    previewEl.innerHTML = html;
+  }
+  
+  // Escape HTML special characters
+  function escapeHTML(text) {
+    return text
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+  
+  // Convert formatted content to markdown for storage or processing
+  function convertToMarkdown() {
+    const content = contentInput.value;
+    // Create a copy of regions sorted by start position (in reverse)
+    const sortedRegions = [...formattedRegions].sort((a, b) => b.start - a.start);
+    
+    // We'll insert markdown tags starting from the end to avoid changing positions
+    let markdownContent = content;
+    
+    for (const region of sortedRegions) {
+      let startTag = '', endTag = '';
+      
+      switch (region.type) {
+        case 'bold':
+          startTag = '**';
+          endTag = '**';
+          break;
+        case 'italic':
+          startTag = '_';
+          endTag = '_';
+          break;
+        case 'underline':
+          startTag = '__';
+          endTag = '__';
+          break;
+      }
+      
+      // Insert the tags
+      markdownContent = 
+        markdownContent.substring(0, region.start) + 
+        startTag + 
+        markdownContent.substring(region.start, region.end) + 
+        endTag + 
+        markdownContent.substring(region.end);
+    }
+    
+    return markdownContent;
+  }
+  
+  // Clear formatting from selected text
+  function clearFormattingFromSelection() {
+    const selection = getSelectionInfo();
+    
+    if (!selection.hasSelection) {
+      return; // Do nothing if no text is selected
+    }
+    
+    // Remove all formatting for the selected region
+    formattedRegions = formattedRegions.filter(region => 
+      !(region.start >= selection.start && region.end <= selection.end)
+    );
+    
+    // Update the visual representation
+    updateFormattedText();
+    
+    // Provide visual feedback that formatting was cleared
+    flashSelection();
+    
+    // Update button states
+    updateFormatButtons();
+  }
+  
+  // Flash the selection to provide visual feedback
+  function flashSelection() {
+    const originalBackground = contentInput.style.background;
+    contentInput.style.background = "#f0f8ff"; // Light blue highlight
+    
+    setTimeout(() => {
+      contentInput.style.background = originalBackground;
+    }, 300);
+  }
+  
+  // Reset all formatting
+  function resetFormatting() {
+    // Clear all format states
+    formatState = {
+      bold: false,
+      italic: false,
+      underline: false
+    };
+    
+    // Clear all formatted regions
+    formattedRegions = [];
+    
+    // Update the visual representation
+    updateFormattedText();
+    
+    // Update buttons state
+    updateFormatButtons();
+    
+    // Remove active states from all formatting buttons
+    boldBtn.classList.remove("active");
+    italicBtn.classList.remove("active");
+    underlineBtn.classList.remove("active");
+  }
+  
+  // Update format buttons based on current state or cursor position
+  function updateFormatButtons() {
+    const selection = getSelectionInfo();
+    
+    if (selection.hasSelection) {
+      // If text is selected, check if it has formatting
+      boldBtn.classList.toggle("active", formattedRegions.some(region => 
+        region.type === 'bold' && 
+        region.start === selection.start && 
+        region.end === selection.end
+      ));
+      
+      italicBtn.classList.toggle("active", formattedRegions.some(region => 
+        region.type === 'italic' && 
+        region.start === selection.start && 
+        region.end === selection.end
+      ));
+      
+      underlineBtn.classList.toggle("active", formattedRegions.some(region => 
+        region.type === 'underline' && 
+        region.start === selection.start && 
+        region.end === selection.end
+      ));
+    } else {
+      // If no text is selected, use the format state
+      boldBtn.classList.toggle("active", formatState.bold);
+      italicBtn.classList.toggle("active", formatState.italic);
+      underlineBtn.classList.toggle("active", formatState.underline);
+    }
+  }
+  
+  // Event listeners for text selection
+  contentInput.addEventListener('mouseup', updateFormatButtons);
+  contentInput.addEventListener('keyup', function(e) {
+    // Only update on arrow keys, home/end, etc.
+    if (e.key.startsWith('Arrow') || e.key === 'Home' || e.key === 'End' || 
+        e.key === 'PageUp' || e.key === 'PageDown') {
+      updateFormatButtons();
+    }
+  });
+  
+  // Event listeners for formatting buttons
+  boldBtn.addEventListener("click", function() {
+    applyFormatting("bold");
+    contentInput.focus();
+  });
+  
+  italicBtn.addEventListener("click", function() {
+    applyFormatting("italic");
+    contentInput.focus();
+  });
+  
+  underlineBtn.addEventListener("click", function() {
+    applyFormatting("underline");
+    contentInput.focus();
+  });
+    clearSelectedBtn.addEventListener("click", function() {
+    clearFormattingFromSelection();
+    contentInput.focus();
+  });
+  
+  resetFormatBtn.addEventListener("click", function() {
+    resetFormatting();
+    contentInput.focus();
+  });
+});
+        const endIdx = text.indexOf(tag.end, startIdx + tag.start.length);
+        
+        if (startIdx !== -1 && endIdx !== -1) {
+          text = text.substring(0, startIdx) + 
+                 text.substring(startIdx + tag.start.length, endIdx) + 
+                 text.substring(endIdx + tag.end.length);
+          hadFormatting = true;
+        } else {
+          break;
+        }
+      }
+    }
+    
+    // Update content
+    contentInput.value = contentInput.value.substring(0, selection.start) + 
+                        text + 
+                        contentInput.value.substring(selection.end);
+    
+    // Restore selection
+    contentInput.focus();
+    contentInput.setSelectionRange(selection.start, selection.start + text.length);
+    
+    // Provide visual feedback that formatting was cleared
+    if (hadFormatting) {
+      // Temporarily flash the selection with a background highlight to show it was cleared
+      const originalBackground = contentInput.style.background;
+      contentInput.style.background = "#f0f8ff"; // Light blue highlight
+      
+      setTimeout(() => {
+        contentInput.style.background = originalBackground;
+      }, 300);
+    }
+    
+    // Update preview and button states
+    updatePreview();
+    updateFormatButtons();
+  }
+    // Reset all formatting
+  function resetFormatting() {
+    // Clear all format states
+    formatState = {
+      bold: false,
+      italic: false,
+      underline: false
+    };
+    
+    // Reset visual appearance of textarea
+    contentInput.style.fontWeight = "normal";
+    contentInput.style.fontStyle = "normal";
+    contentInput.style.textDecoration = "none";
+    
+    // Remove all formatting tags from the content
+    let content = contentInput.value;
+    
+    for (const format in formatTags) {
+      const tag = formatTags[format];
+      while (content.includes(tag.start) && content.includes(tag.end)) {
+        const startIdx = content.indexOf(tag.start);
+        const endIdx = content.indexOf(tag.end, startIdx + tag.start.length);
+        
+        if (startIdx !== -1 && endIdx !== -1) {
+          content = content.substring(0, startIdx) + 
+                   content.substring(startIdx + tag.start.length, endIdx) + 
+                   content.substring(endIdx + tag.end.length);
+        } else {
+          break;
+        }
+      }
+    }
+    
+    // Update content
+    contentInput.value = content;
+    
+    // Update preview and buttons
+    updatePreview();
+    updateFormatButtons();
+    
+    // Remove active states from all formatting buttons
+    boldBtn.classList.remove("active");
+    italicBtn.classList.remove("active");
+    underlineBtn.classList.remove("active");
+  }
+  
+  // Update format buttons based on current state or cursor position
+  function updateFormatButtons() {
+    const selection = getSelectionInfo();
+    
+    if (selection.hasSelection) {
+      // If text is selected, check if it has formatting
+      boldBtn.classList.toggle("active", selection.text.includes(formatTags.bold.start));
+      italicBtn.classList.toggle("active", selection.text.includes(formatTags.italic.start));
+      underlineBtn.classList.toggle("active", selection.text.includes(formatTags.underline.start));
+    } else {
+      // If no text is selected, use the format state
+      boldBtn.classList.toggle("active", formatState.bold);
+      italicBtn.classList.toggle("active", formatState.italic);
+      underlineBtn.classList.toggle("active", formatState.underline);
+    }
+  }
+    // Update the preview with formatted content
+  function updatePreview() {
+    // Get content from textarea
+    let content = contentInput.value;
+    
+    // Replace formatting tags with HTML
+    content = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); // Bold
+    content = content.replace(/_(.*?)_/g, '<em>$1</em>'); // Italic
+    content = content.replace(/__(.*?)__/g, '<u>$1</u>'); // Underline
+    
+    // If we wanted to display a live preview, we would update a preview element:
+    // const previewElement = document.getElementById('preview');
+    // previewElement.innerHTML = content;
+    
+    // The current implementation applies formatting directly to the textarea
+  }
+  
+  // Event listeners for formatting buttons
+  boldBtn.addEventListener("click", function() {
+    applyFormatting("bold");
+    this.classList.toggle("active", formatState.bold);
+  });
+  
+  italicBtn.addEventListener("click", function() {
+    applyFormatting("italic");
+    this.classList.toggle("active", formatState.italic);
+  });
+  
+  underlineBtn.addEventListener("click", function() {
+    applyFormatting("underline");
+    this.classList.toggle("active", formatState.underline);
+  });
+  
+  clearSelectedBtn.addEventListener("click", function() {
+    clearFormattingFromSelection();
+  });
+  
+  resetFormatBtn.addEventListener("click", function() {
+    resetFormatting();
+  });
+});
